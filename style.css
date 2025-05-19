@@ -497,6 +497,7 @@ input:focus {
     margin-top: 2rem;
     color: var(--Neutral-0);
     width: 85%;
+    /* display: none; */
     flex-direction: column;
     /* align-items: center; */
   }
@@ -531,7 +532,7 @@ input:focus {
   }
 
   .ticket-container {
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .avatar-img {
@@ -544,7 +545,7 @@ input:focus {
   }
 
   .avatar-fullname {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 
   .ticket-number {
@@ -571,9 +572,10 @@ input:focus {
   .ticket-date-location,
   .avatar-github-wrapper {
     display: flex;
+    /* outline: 1px solid red; */
     gap: 0.2rem;
     align-items: center;
     width: 10rem;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 }
