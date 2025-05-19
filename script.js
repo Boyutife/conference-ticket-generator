@@ -41,6 +41,19 @@ let userEmail = '';
 let userGithubUsername = '';
 let avatar = null;
 
+function date() {
+  const ticketDate = document.querySelector('.ticket-date');
+  const currentDate = new Date();
+  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+  let formattedDate = currentDate.toLocaleDateString('en-US', options);
+  let eventDay = ticketDate.querySelector('.event-day');
+  eventDay.innerText = formattedDate.split(' ')[1];
+  let eventMonth = ticketDate.querySelector('.event-month');
+  eventMonth.innerText = formattedDate.split(' ')[0];
+  let eventYear = ticketDate.querySelector('.event-year');
+  eventYear.innerText = formattedDate.split(' ')[2];
+}
+
 // Form Validation
 function validateForm() {
   // Clear previous errors
@@ -121,30 +134,16 @@ generateTicket.addEventListener('click', (e) => {
     let ticketSection = document.querySelector('.ticket-section');
     ticketSection.classList.remove('hidden');
     userForm.classList.add('hidden');
+    const headerText = document.querySelector('.header-text');
+    headerText.innerHTML = `<h1>Congrats, <span class="header-username">${userFullname}!</span> Your ticket is ready!</h1>`;
+    const subHeaderText = document.querySelector('.sub-header-text');
+    subHeaderText.innerHTML = `<p>We've emailed your ticket to <span class="ticket-page-email">${userEmail}</span> and will send updates in the run up to the event.</p>`;
+    date();
+    const ticketAvatar = document.querySelector('.avatar-img');
+    ticketAvatar.src = URL.createObjectURL(imageInput.files[0]);
+    const ticketFullname = document.querySelector('.avatar-fullname');
+    ticketFullname.innerText = userFullname;
+    const ticketGithub = document.querySelector('.github-username');
+    ticketGithub.innerText = userGithubUsername;
   }
-
-  const headerText = document.querySelector('.header-text');
-  headerText.innerHTML = `<h1>Congrats, <span class="header-username">${userFullname}!</span> Your ticket is ready!</h1>`;
-  const subHeaderText = document.querySelector('.sub-header-text');
-  subHeaderText.innerHTML = `<p>We've emailed your ticket to <span class="ticket-page-email">${userEmail}</span> and will send updates in the run up to the event.</p>`;
-  date();
-  const ticketAvatar = document.querySelector('.avatar-img');
-  ticketAvatar.src = URL.createObjectURL(imageInput.files[0]);
-  const ticketFullname = document.querySelector('.avatar-fullname');
-  ticketFullname.innerText = userFullname;
-  const ticketGithub = document.querySelector('.github-username');
-  ticketGithub.innerText = userGithubUsername;
 });
-
-function date() {
-  const ticketDate = document.querySelector('.ticket-date');
-  const currentDate = new Date();
-  const options = { month: 'short', day: 'numeric', year: 'numeric' };
-  let formattedDate = currentDate.toLocaleDateString('en-US', options);
-  let eventDay = ticketDate.querySelector('.event-day');
-  eventDay.innerText = formattedDate.split(' ')[1];
-  let eventMonth = ticketDate.querySelector('.event-month');
-  eventMonth.innerText = formattedDate.split(' ')[0];
-  let eventYear = ticketDate.querySelector('.event-year');
-  eventYear.innerText = formattedDate.split(' ')[2];
-}
